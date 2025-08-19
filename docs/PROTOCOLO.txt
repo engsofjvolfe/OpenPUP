@@ -1,0 +1,199 @@
+<!-- 
+OpenPUP - Protocolo Universal de Prompt  
+Licença: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International  
+Autor: Jeanco Volfe 
+Repositório: https://github.com/engsofjvolfe/OpenPUP.git 
+-->
+
+--- 
+version: 1.0
+updated: 2025-08-04 
+---
+
+# Protocolo de Prompt — Autoexplicativo e Ordenado
+
+Como usar (humano): preencha os campos YAML, colchetes ou listas marcadas conforme indicado.  
+Como agir (IA): siga a ordem 0→1→2→3→4→5→6→7→8→9. Não execute a entrega antes do Passo 7.
+
+---
+<!-- INÍCIO DO PROMPT OPENPUP -->
+## 0) Modo e Idioma
+
+Humano — preencha os campos YAML abaixo:
+
+modo: FAST        # FAST | THOROUGH  
+idioma: PT-BR     # PT-BR | EN | ...  
+publico: tecnico  # leigo | intermediario | tecnico  
+overflow: resumir_dados_nao_criticos  # se tokens >95%, resuma dados não críticos
+contexto_conversa: primeira_vez
+
+IA — faça:  
+- Considere estas preferências em toda a resposta.
+
+---
+
+## 1) Tarefa (o que produzir e em que formato)
+
+Humano — preencha entre os delimitadores abaixo:
+
+### <TASK_BEGIN>
+Objetivo: [o que deve ser produzido]  
+Formato de saída: [Markdown | tabela | JSON | lista]  
+Tamanho-alvo: [ex.: 200–300 palavras]  
+### <TASK_END>
+
+Exemplo:  
+Objetivo: gerar um resumo sobre [tema]. Formato: Markdown. Tamanho: 250–300 palavras.
+
+IA — faça:  
+- Entenda exatamente o objetivo, formato e tamanho-alvo antes de prosseguir.
+
+---
+
+## 2) Critérios (priorização do que importa)
+
+Humano — liste, atribuindo peso (1.0 obrigatório, 0.5 desejável, –1.0 evitar):
+
+M1: até 300 palavras                 # peso = 1.0  
+M2: 3 exemplos práticos              # peso = 1.0  
+M3: linguagem clara em PT-BR         # peso = 1.0  
+S1: usar bullets quando útil         # peso = 0.5  
+A1: jargão sem explicar              # peso = –1.0  
+A2: afirmar sem qualificar incerteza # peso = –1.0
+D1: deve usar dados de x antes de y
+exemplo de como preencher (`M1 0.8`: gerar relatório que...)
+IA — faça:  
+- Em caso de conflito, priorize pesos maiores.
+
+---
+
+## 3) Dados (fonte da verdade)
+
+Humano — cole apenas o que a IA pode usar, dentro do bloco abaixo:
+
+<DATA>  
+[insira aqui dados, requisitos, exemplos, etc]  
+</DATA>
+
+IA — faça:  
+- Use exclusivamente o conteúdo entre <DATA> e </DATA>, salvo se o Passo 4 permitir fontes externas.
+
+---
+
+## 4) Restrições e Condições
+
+Humano — defina usando este padrão:
+external_sources: permitido     # permitido | negado  
+clarification_policy: max_questions: 3
+if_no_response: assume
+scope_limits:  
+  - não prescrever medicamentos  
+  - não citar marcas  
+tools_required:  
+  - JSON com campos X,Y,Z  
+other_conditions:  
+  - não usar nada fora de "Dados"
+
+IA — faça:  
+- Respeite integralmente essas restrições.
+
+---
+
+## 5) Análise Prévia (não é a entrega)
+
+Humano -  estrutura de leitura para IA:
+```json
+{
+  "lacunas": [],
+  "assuncoes": [],
+  "riscos": []
+}
+```
+
+IA — faça:  
+- Com base nos itens 1–4, identifique pontos críticos antes de produzir qualquer conteúdo.  
+- Apresente sua análise separando claramente os seguintes blocos:
+
+  - **Lacunas** → o que está faltando e pode impedir a entrega correta  
+  - **Assunções** → decisões que você (IA) vai tomar por conta própria, se não houver resposta  
+  - **Riscos** → pontos que podem gerar erro, ambiguidade ou violar alguma regra
+
+- Use formato escaneável e organizado — como listas com títulos — para facilitar a leitura humana.  
+
+Se houver lacuna crítica que impeça um MUST:  
+- Faça até 3 perguntas objetivas e pare.  
+- Se não houver resposta, declare as assunções necessárias e siga com a tarefa.
+
+---
+
+## 6) Plano de Execução (antes de escrever)
+
+IA — faça:  
+- Apresente um plano estruturado com 1 linha por passo, em formato de tabela com 3 colunas:
+
+  | passo | acao | meta |  
+1 | Introdução | contextualizar público | ... |
+2 | ... | ... | ... |
+
+- Explique como atenderá MUSTs, SHOULDs e evitará AVOIDs.  
+- Estime o tamanho final.
+
+Finalize com a marca: 
+<<READY_EXEC>>
+
+---
+
+## 7) Auto-checagem (antes de enviar)
+
+IA — faça (marque em Markdown):
+
+- [ ] Cumpriu todos os MUST  
+- [ ] SHOULD atendidos quando possível  
+- [ ] Nenhum AVOID violado  
+- [ ] Tamanho e formato conforme Tarefa  
+- [ ] Uso exclusivo dos Dados  
+- [ ] Incertezas qualificadas
+- [ ] Demais critérios definidos por você
+
+---
+
+## 8) Regra de Parada
+
+Humano -  estrutura de leitura para IA:
+```json
+{  
+  "bloqueado": true,  
+  "motivo": "Explique objetivamente o bloqueio.",  
+  "proposta": "Solicite dados adicionais ou ofereça versão parcial segura."  
+}
+```
+
+IA — faça:
+- Apresente sua análise separando claramente os seguintes blocos:
+
+  - **Bloqueado** → true (se bloqueado) ou false (nao e necessario realizar essa etapa)  
+  - **Motivo** →  Explicacao objetiva do motivo do bloqueio
+  - **Proposta** → solicitação de dados adicionais, perguntas ou sugestão de versão parcial segura
+
+- Use formato escaneável e organizado — como listas com títulos — para facilitar a leitura humana.  
+Não gere uma entrega especulativa.
+
+---
+
+## 9) Entrega (somente após <<READY_EXEC>>)
+
+IA — faça:  
+- Produza a saída conforme:  
+  - O formato definido na Tarefa  
+  - Os dados delimitados em <DATA>  
+  - Os critérios e restrições definidos antes
+
+Respeite o esquema indicado anteriormente.
+<!-- FIM DO PROMPT -->
+
+<!-- 
+Este arquivo pode ser compartilhado e adaptado, mas:  
+- Não pode ser usado, na íntegra ou em suas partes, para fins comerciais  
+- Deve manter a mesma licença a ele atribuída no arquivo LICENSE  
+- Deve atribuir o autor original  
+-->
