@@ -719,5 +719,6 @@ Agora é só **entregar com excelência**, respeitando cada detalhe acordado.
 Pense na Etapa 8 como a **fase de produção final**.  
 O roteiro já foi aprovado, os critérios estão claros — agora é só executar com fidelidade e qualidade.
 
-
-> Este documento faz parte do projeto OpenPUP, licenciado sob Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0). Para detalhes completos, consulte o arquivo LICENSE.
+> Este projeto é licenciado sob:
+- **Documentação**: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+- **Implementações em software**: [AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0.html)

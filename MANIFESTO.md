@@ -75,4 +75,6 @@ Se alguém quiser construir negócios ou serviços em cima do OpenPUP, ótimo �
 Se o sistema quer que você aceite menos da IA, refine suas buscas na expectativa de receber **mais**.
 
 
-> Este manifesto faz parte do projeto OpenPUP, licenciado sob Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0), alinhado com seus princípios e valores. Veja LICENSE para detalhes.
+> Este projeto é licenciado sob:
+- **Documentação**: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+- **Implementações em software**: [AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0.html)
