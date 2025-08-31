@@ -129,6 +129,8 @@ Pense no passo 1 como o rótulo e a embalagem do seu pedido para a IA. Você diz
 ## 2) Critérios (priorização do que importa)
 
 Humano — liste, atribuindo peso (1.0 obrigatório, 0.5 desejável, –1.0 evitar):
+M: A IA deve cumprir todas as etapas do protocolo, com execução obrigatória das seções 5 a 9. Falhas nessas etapas devem acionar bloqueio na etapa 8. # peso = 1.0  
+M: A IA deve interromper o fluxo se qualquer etapa anterior estiver incompleta, inválida ou não validada. Não é permitido pular etapas. # peso = 1.0
 
 M1: até 300 palavras                 # peso = 1.0  
 M2: 3 exemplos práticos              # peso = 1.0  
@@ -157,6 +159,7 @@ Isso ajuda a IA a focar exatamente no que importa e evitar o que deve ser evitad
   - **Evitar** → não deve aparecer.  
   - **Regra de dados (D)** → orienta como a IA deve tratar os dados fornecidos.  
 
+> Mantenha na lista os dois primeiros códigos M já listados, eles visam condicionar a IA a não pular etapas
 ---
 
 🎯 O que significam os códigos
@@ -409,7 +412,7 @@ Você diz o que ela pode acessar, como deve se comportar, o que está fora dos l
 # Etapa 5: Análise Prévia (não é a entrega)
 
 ```
-## 5) Análise Prévia (não é a entrega)
+## 5) Análise Prévia (não é a entrega) ETAPA OBRIGATÓRIA
 
 Humano -  estrutura de leitura para IA:
 ```json
@@ -503,7 +506,7 @@ Tudo isso de forma organizada, transparente e padronizada — para que você ten
 ---
 ---
 
-# Etapa 6: Plano de Execução (antes de escrever)
+# Etapa 6: Plano de Execução (antes de escrever) ETAPA OBRIGATÓRIA
 
 ```
 ## 6) Plano de Execução (antes de escrever)
@@ -567,7 +570,7 @@ Com isso, a entrega final será mais precisa, eficiente e alinhada com o que voc
 ---
 ---
 
-# Etapa 7: Auto-checagem (antes de enviar)
+# Etapa 7: Auto-checagem (antes de enviar) ETAPA OBRIGATÓRIA
 
 ```
 ## 7) Auto-checagem (antes de enviar)

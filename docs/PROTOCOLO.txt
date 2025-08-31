@@ -54,6 +54,9 @@ IA — faça:
 
 Humano — liste, atribuindo peso (1.0 obrigatório, 0.5 desejável, –1.0 evitar):
 
+M: A IA deve cumprir todas as etapas do protocolo, com execução obrigatória das seções 5 a 9. Falhas nessas etapas devem acionar bloqueio na etapa 8. # peso = 1.0  
+M: A IA deve interromper o fluxo se qualquer etapa anterior estiver incompleta, inválida ou não validada. Não é permitido pular etapas. # peso = 1.0
+
 M1: até 300 palavras                 # peso = 1.0  
 M2: 3 exemplos práticos              # peso = 1.0  
 M3: linguagem clara em PT-BR         # peso = 1.0  
@@ -99,7 +102,7 @@ IA — faça:
 
 ---
 
-## 5) Análise Prévia (não é a entrega)
+## 5) Análise Prévia (não é a entrega) - ETAPA OBRIGATÓRIA
 
 Humano -  estrutura de leitura para IA:
 ```json
@@ -126,7 +129,7 @@ Se houver lacuna crítica que impeça um MUST:
 
 ---
 
-## 6) Plano de Execução (antes de escrever)
+## 6) Plano de Execução (antes de escrever) - ETAPA OBRIOGATÓRIA
 
 IA — faça:  
 - Apresente um plano estruturado com 1 linha por passo, em formato de tabela com 3 colunas:
@@ -143,10 +146,11 @@ Finalize com a marca:
 
 ---
 
-## 7) Auto-checagem (antes de enviar)
+## 7) Auto-checagem (antes de enviar) - ETAPA OBRIGATÓRIA
 
 IA — faça (marque em Markdown):
 
+- [ ] Etapas 5 a 6 concluídas integralmente antes da entrega
 - [ ] Cumpriu todos os MUST  
 - [ ] SHOULD atendidos quando possível  
 - [ ] Nenhum AVOID violado  
@@ -154,10 +158,11 @@ IA — faça (marque em Markdown):
 - [ ] Uso exclusivo dos Dados  
 - [ ] Incertezas qualificadas
 - [ ] Demais critérios definidos por você
+- [ ] Etapa 7 concluída sem pular itens
 
 ---
 
-## 8) Regra de Parada
+## 8) Regra de Parada - ETAPA OBRIGATÓRIA
 
 Humano -  estrutura de leitura para IA:
 ```json
@@ -180,7 +185,7 @@ Não gere uma entrega especulativa.
 
 ---
 
-## 9) Entrega (somente após <<READY_EXEC>>)
+## 9) Entrega (somente após <<READY_EXEC>>) - ETAPA OBRIGATÓRIA
 
 IA — faça:  
 - Produza a saída conforme:  
